@@ -1,12 +1,6 @@
-let { genHeader } = require("../helper/genHeader");
 let req = require("../helper/request");
-let { serviceName, consumerID, secretKey } = require("./config.json");
-let { baseURL } = require("../config.json");
 
-let host = baseURL;
-let headers = genHeader(consumerID, secretKey);
-
-module.exports = {
+module.exports = (serviceName, host, headers) => ({
   diagnosa: parameter =>
     req.get({
       path: `/${serviceName}/referensi/diagnosa/${parameter}`,
@@ -50,4 +44,4 @@ module.exports = {
       host,
       headers
     })
-};
+});

@@ -1,12 +1,6 @@
-let { genHeader } = require("../helper/genHeader");
 let req = require("../helper/request");
-let { serviceName, consumerID, secretKey } = require("./config.json");
-let { baseURL } = require("../config.json");
 
-let host = baseURL;
-let headers = genHeader(consumerID, secretKey);
-
-module.exports = {
+module.exports = (serviceName, host, headers) => ({
   cariRujukan: nomorKartu =>
     req.get({
       path: `/${serviceName}/Rujukan/RS/List/Peserta/${nomorKartu}`,
@@ -72,4 +66,4 @@ module.exports = {
       },
       { request: { t_rujukan } }
     )
-};
+})

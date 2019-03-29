@@ -1,12 +1,6 @@
-let { genHeader } = require("../helper/genHeader");
-let req = require("../helper/request");
-let { serviceName, consumerID, secretKey } = require("./config.json");
-let { baseURL } = require("../config.json");
+const req = require("../helper/request");
 
-let host = baseURL;
-let headers = genHeader(consumerID, secretKey);
-
-module.exports = {
+module.exports = (serviceName, host, headers) => ({
   cariSEP: nomorSEP =>
     req.get({
       path: `/${serviceName}/SEP/${nomorSEP}`,
@@ -74,4 +68,4 @@ module.exports = {
       },
       { request: { t_sep } }
     )
-};
+});

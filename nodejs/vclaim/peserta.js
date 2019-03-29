@@ -1,12 +1,6 @@
-let { genHeader } = require("../helper/genHeader");
 let req = require("../helper/request");
-let { serviceName, consumerID, secretKey } = require("./config.json");
-let { baseURL } = require("../config.json");
 
-let host = baseURL;
-let headers = genHeader(consumerID, secretKey);
-
-module.exports = {
+module.exports = (serviceName, host, headers) => ({
   cariPeserta: (parameter, tanggalPelayanan) => {
     let str =
       parameter.length === 13 ? `/nokartu/${parameter}` : `/nik/${parameter}`;
@@ -16,4 +10,4 @@ module.exports = {
       headers
     });
   }
-};
+})
